@@ -1,0 +1,34 @@
+# The main job for my_project.
+resources:
+  jobs:
+    renewable_energy_data_loading:
+      name: renewable_energy_data_loading
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+
+
+      tasks:
+        - task_key: cleaning_the_data
+          existing_cluster_id: 0521-204417-zqqfgm5y
+          notebook_task:
+            notebook_path: ../src/renewable_energy/source.ipynb
+
+        - task_key: anomalies_cleaning_storeing_data
+          existing_cluster_id: 0521-204417-zqqfgm5y
+          depends_on:
+            - task_key: cleaning_the_data
+          notebook_task:
+            notebook_path: ../src/renewable_energy/anomalies_cleaning.ipynb
+
+        - task_key: summary_statistics_storeing_data
+          depends_on:
+            - task_key: cleaning_the_data
+          existing_cluster_id: 0521-204417-zqqfgm5y
+          notebook_task:
+            notebook_path: ../src/renewable_energy/summary_statistics.ipynb
+
