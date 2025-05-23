@@ -51,5 +51,14 @@ below the the break down about the test
 # 4) Stores the processed data: Store the cleaned data and summary statistics in a database for further analysis.
   
   `df.write.mode("overwrite").saveAsTable("summary_stats")
+  
   df.write.mode("overwrite").saveAsTable("cleaned_data")`
+
+# 5) images screenshot for the proof
+	![Alt text](test_1.JPG)
+	![Alt text](test_2.JPG)
+	![Alt text](test_3.JPG)
+	![Alt text](test_4.JPG)
+	![image](https://github.com/user-attachments/assets/1e816ffb-40cf-44c1-8166-091c42e68402)
+	![image](https://github.com/user-attachments/assets/31c6d5fd-8d34-4c58-983b-4ec21578ca8d)  
   
