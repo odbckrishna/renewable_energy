@@ -7,10 +7,10 @@ below the the break down about the test
 # 1) Cleans the data: The raw data contains missing values and outliers, which must be removed or imputed.
 
 ### drona to remove the NA or NULL values 
-data.dropna()
+`data.dropna()`
 
 ### drop duplicates
-data.dropDuplicates(["timestamp", "turbine_id"])
+`data.dropDuplicates(["timestamp", "turbine_id"])`
 
 ### Outlier are removed IQR method 
     `https://medium.com/@pp1222001/outlier-detection-and-removal-using-the-iqr-method-6fab2954315d`
@@ -26,7 +26,7 @@ data.dropDuplicates(["timestamp", "turbine_id"])
     upper_bound_power_output = Q3_power_output + 1.5 * IQR_power_output
 
     logic to get outliers : 
-    (~col("wind_speed").between(lower_bound_wind_speed, upper_bound_wind_speed)) |   (~col("power_output").between(lower_bound_power_output, upper_bound_power_output))
+    (~col("wind_speed").between(lower_bound_wind_speed, upper_bound_wind_speed)) |   (~col("power_output").between(lower_bound_power_output, upper_bound_power_output))`
 
 
 # 2) Calculates summary statistics: For each turbine, calculate the minimum, maximum, and average power output over a given time period (e.g., 24 hours).
@@ -46,10 +46,10 @@ data.dropDuplicates(["timestamp", "turbine_id"])
     data.agg(stddev("avg_power_output")).collect()[0][0]
 
     logic anomalies: 
-    (col("avg_power_output") < overall_avg - 2 * overall_stddev) | (col("avg_power_output") > overall_avg + 2 * overall_stddev)
+    (col("avg_power_output") < overall_avg - 2 * overall_stddev) | (col("avg_power_output") > overall_avg + 2 * overall_stddev)`
 
 # 4) Stores the processed data: Store the cleaned data and summary statistics in a database for further analysis.
   
-  df.write.mode("overwrite").saveAsTable("summary_stats")
-  df.write.mode("overwrite").saveAsTable("cleaned_data")
+  `df.write.mode("overwrite").saveAsTable("summary_stats")
+  df.write.mode("overwrite").saveAsTable("cleaned_data")`
   
